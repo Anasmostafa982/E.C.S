@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>المصرية للمقاولات والمساحة | E.C.S</title>
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #ff7043;
+      --bg-section: #fff;
+      --text-color: #263238;
+      --header-bg: #263238;
+      --header-text: #fff;
+      --footer-bg: #37474f;
+      --footer-text: #fff;
+    }
+
+    body.dark-mode {
+      --bg-main: #121212;
+      --bg-section: #1e1e1e;
+      --text-color: #eee;
+      --header-bg: #222;
+      --header-text: #fbe9e7;
+      --footer-bg: #111;
+      --footer-text: #aaa;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-color);
+      scroll-behavior: smooth;
+      direction: rtl;
+    }
+
+    .toggle-theme {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      z-index: 999;
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    body.dark-mode .toggle-theme {
+      background: #444;
+      color: #fff;
+    }
+
+    .marquee {
+      background-color: #d84315;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee span {
+      display: inline-block;
+      animation: marquee 15s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    header {
+      background-color: var(--header-bg);
+      color: var(--header-text);
+      padding: 15px;
+      text-align: center;
+      background-image: url('survey-background.jpg'); /* الخلفية الجديدة للأجهزة المساحية */
+      background-size: cover;
+    }
+
+    nav a {
+      color: var(--header-text);
+      margin: 0 15px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .logo {
+      width: 300px; /* تم تكبير الشعار هنا */
+      margin-bottom: 10px;
+    }
+
+    .hero {
+      background: rgba(38, 50, 56, 0.85);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .section {
+      padding: 30px;
+      background-color: var(--bg-section);
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 1;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      max-width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      margin: auto;
+      display: block;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+    }
+
+    a {
+      color: #f57c00;
+    }
+
+    a:hover {
+      color: #e65100;
+    }
+
+    .floating-shape {
+      position: absolute;
+      width: 60px;
+      opacity: 0.2;
+      animation: float 10s linear infinite;
+      z-index: 0;
+    }
+
+    .floating-shape:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+    .floating-shape:nth-child(2) { top: 30%; left: 60%; animation-delay: 3s; }
+    .floating-shape:nth-child(3) { top: 60%; left: 40%; animation-delay: 6s; }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+      100% { transform: translateY(0) rotate(0); }
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      padding: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      font-size: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #1ebe5c;
+    }
+
+    /* شريط صور متحرك */
+    .strip-wrapper {
+      overflow: hidden;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .image-strip {
+      display: flex;
+      gap: 40px;
+      white-space: nowrap;
+      animation: scroll-strip 20s linear infinite;
+      align-items: center;
+      justify-content: start;
+    }
+
+    .image-strip img {
+      height: 80px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+      transition: transform 0.3s ease;
+    }
+
+    .image-strip img:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes scroll-strip {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle-theme" onclick="toggleTheme()">🌙 الوضع الداكن</button>
+
+  <a class="whatsapp-float" href="https://wa.me/201153611556" target="_blank" title="تواصل معنا على واتساب">
+    💬
+  </a>
+
+  <div class="marquee">
+    <span>لدينا خبرة أكثر من 20 عامًا في أعمال المساحة والمقاولات وتأجير الأجهزة</span>
+  </div>
+
+  <img src="total.png" class="floating-shape" alt="توتال">
+  <img src="gps.png" class="floating-shape" alt="GPS">
+  <img src="level.png" class="floating-shape" alt="Level">
+
+  <header>
+    <img src="55.png" alt="شعار E.C.S" class="logo">
+    <h1>الشركة المصرية للمقاولات والمساحة (E.C.S)</h1>
+    <nav>
+      <a href="#about">عن الشركة</a>
+      <a href="#services">خدماتنا</a>
+      <a href="#courses">الكورسات</a>
+      <a href="#gallery">معرض الصور</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </header>
+
+  <div class="hero" data-aos="zoom-in">
+    <h2>كل ما تحتاجه من أعمال المساحة وتأجير الأجهزة الحديثة</h2>
+    <p>خبرة واسعة، معدات حديثة، ودورات تدريبية معتمدة</p>
+  </div>
+
+
+  <div class="section" id="about" data-aos="fade-up">
+    <h2>عن الشركة</h2>
+    <p>
+      تأسست الشركة المصرية للمقاولات والمساحة (E.C.S) بهدف تقديم خدمات هندسية ومساحية متكاملة بأعلى جودة.
+      نمتلك فريق من المهندسين والفنيين ذوي خبرة واسعة، ونوفر أحدث الأجهزة مثل Total Station و GPS.
+    </p>
+  </div>
+
+  <div class="section" id="services" data-aos="fade-up">
+    <h2>خدماتنا</h2>
+    <ul>
+      <li>الرفع المساحي والتوقيع</li>
+      <li>حساب الكميات</li>
+      <li>إعداد الخرائط الطبوغرافية</li>
+      <li>تأجير أجهزة Total Station, GPS, Level</li>
+    </ul>
+  </div>
+
+  <div class="section" id="courses" data-aos="fade-up">
+    <h2>كورساتنا</h2>
+    <ul>
+      <li><strong>دورة Civil 3D</strong> - شرح كامل مع تطبيق عملي</li>
+      <li><strong>دورة AutoCAD</strong> - للرسم والتصميم الهندسي</li>
+    </ul>
+    <p>تشمل شهادة معتمدة وتدريب عملي مكثف.</p>
+  </div>
+
+  <div class="section" id="gallery" data-aos="fade-up">
+    <h2>معرض الصور</h2>
+
+    <h3>فريق العمل</h3>
+    <div class="gallery">
+      <img src="team1.png" alt="فريق 1">
+      <img src="team2.png" alt="فريق 2">
+    </div>
+
+    <h3>أجهزة للإيجار</h3>
+    <div class="gallery">
+      <img src="device1.png" alt="جهاز 1">
+      <img src="device2.png" alt="جهاز 2">
+    </div>
+
+    <h3>بعض أعمالنا</h3>
+    <div class="gallery">
+      <img src="work1.png" alt="عمل 1">
+      <img src="work2.png" alt="عمل 2">
+    </div>
+  </div>
+
+  <div class="section" id="contact" data-aos="fade-up">
+    <h2>تواصل معنا</h2>
+    <p>📞 01153611556</p>
+    <p>☎️ 0237722575</p>
+    <p> 📍 شارع الثورة من سهل حمزة , الهرم , الجيزة , مصر</p>
+    <p>📧 mos562004@gmail.com</p>
+    <p><a href="https://wa.me/201153611556" target="_blank">راسلنا على واتساب</a></p>
+  </div>
+
+  <footer>
+    <p>جميع الحقوق محفوظة &copy; 2025 E.C.S</p>
+    <p><a href="#">⬆️ العودة للأعلى</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  </script>
+
+</body>
+</html>
